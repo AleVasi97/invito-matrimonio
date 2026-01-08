@@ -3,104 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invito Matrimonio</title>
+<title>Valeria & Alessandro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    font-family: 'Georgia', serif;
-    background: #f6f3ef;
+    background: #eee;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: 'Playfair Display', serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    height: 90vh;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.25);
 }
 
 /* BUSTA */
-#envelope {
-    width: 90%;
-    max-width: 400px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    text-align: center;
-    padding: 40px 20px;
+.envelope-left, .envelope-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(#f8f6f2, #efe9e1);
+    z-index: 3;
+    transition: transform 1.2s ease;
 }
 
-#openBtn {
+.envelope-left { left: 0; border-right: 1px solid #ddd; }
+.envelope-right { right: 0; border-left: 1px solid #ddd; }
+
+.container.open .envelope-left {
+    transform: translateX(-100%);
+}
+.container.open .envelope-right {
+    transform: translateX(100%);
+}
+
+/* SIGILLO */
+.seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: #c9a86a;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,.3);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+.seal img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.container.open .seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+    pointer-events: none;
 }
 
 /* INVITO */
-#invitation {
-    display: none;
+.invite {
+    position: absolute;
+    inset: 0;
+    background: url("fiori.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease 1s;
+}
+
+/* OVERLAY BIANCO */
+.invite::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.55);
+}
+
+/* CONTENUTO */
+.invite-content {
+    position: relative;
+    padding: 40px 25px;
     text-align: center;
 }
 
-h1 {
-    font-weight: normal;
-    font-size: 36px;
+.container.open .invite {
+    opacity: 1;
 }
 
-h2 {
-    font-size: 18px;
+.subtitle {
+    font-size: 13px;
     letter-spacing: 2px;
-    color: #777;
+    color: #666;
 }
 
-.button {
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 52px;
+    margin: 20px 0;
+}
+
+.date {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.buttons a {
     display: block;
-    margin: 15px auto;
-    padding: 12px 20px;
+    margin: 14px auto;
+    padding: 13px;
     width: 80%;
     background: #c9a86a;
     color: white;
-    border-radius: 25px;
     text-decoration: none;
-    font-size: 16px;
+    border-radius: 30px;
+    font-size: 15px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="envelope">
-    <div id="closed">
-        <p>💌 Clicca per aprire</p>
-        <button id="openBtn">Apri Invito</button>
+<div class="container" id="container">
+
+    <div class="envelope-left"></div>
+    <div class="envelope-right"></div>
+
+    <div class="seal" onclick="openInvite()">
+		<img src="timbro.png" alt="Sigillo">
+	</div>
+
+
+    <div class="invite">
+        <div class="invite-content">
+            <div class="subtitle">SIAMO FELICI DI INVITARTI AL NOSTRO MATRIMONIO</div>
+
+            <div class="names">
+                Valeria <br>&<br> Alessandro
+            </div>
+
+            <div class="date">
+                Sabato<br>
+                <strong>2 Maggio 2026</strong><br>
+                Ore 15:00
+            </div>
+
+            <div class="buttons">
+                <a href="https://maps.google.com/?q=CHIESA" target="_blank">📍 Mappa Chiesa</a>
+                <a href="https://maps.google.com/?q=RISTORANTE" target="_blank">🍽️ Mappa Ristorante</a>
+                <a href="https://forms.gle/TUOFORM" target="_blank">💍 Conferma Presenza</a>
+            </div>
+        </div>
     </div>
 
-    <div id="invitation">
-        <h2>SIAMO FELICI DI INVITARTI</h2>
-        <h1>Valeria & Alessandro</h1>
-        <p>Sabato 2 Maggio 2026<br>Ore 15:00</p>
-
-        <a class="button" href="https://www.google.com/maps/place/Parrocchia+Sacro+Cuore+di+Ges%C3%B9/@45.4397759,8.6104699,17z/data=!3m1!4b1!4m6!3m5!1s0x47865a1b9905d203:0x34594e0af7ea4a72!8m2!3d45.4397722!4d8.6130448!16s%2Fg%2F1thx7gqc?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-            📍 Mappa Chiesa
-        </a>
-
-        <a class="button" href="https://www.google.com/maps/place/La+Sesia+Hotel+Srl/@45.5314868,8.4052075,17z/data=!3m1!4b1!4m6!3m5!1s0x478640db82ad7bd5:0x155ca3992d42c30c!8m2!3d45.5314831!4d8.4077824!16s%2Fg%2F1tdd8qby?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-            🍽️ Mappa Ristorante
-        </a>
-
-        <p>Parteciperai?</p>
-
-        <a class="button" href="https://forms.gle/wXWT8VFeSqMLs6kbA" target="_blank">
-            ✅ Conferma Presenza
-        </a>
-    </div>
 </div>
 
 <script>
-document.getElementById("openBtn").onclick = function() {
-    document.getElementById("closed").style.display = "none";
-    document.getElementById("invitation").style.display = "block";
+function openInvite() {
+    document.getElementById("container").classList.add("open");
 }
 </script>
 
