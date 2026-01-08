@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invito Matrimonio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #f6f3ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* BUSTA */
+#envelope {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#openBtn {
+    background: #c9a86a;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* INVITO */
+#invitation {
+    display: none;
+    text-align: center;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #777;
+}
+
+.button {
+    display: block;
+    margin: 15px auto;
+    padding: 12px 20px;
+    width: 80%;
+    background: #c9a86a;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="envelope">
+    <div id="closed">
+        <p>💌 Clicca per aprire</p>
+        <button id="openBtn">Apri Invito</button>
+    </div>
+
+    <div id="invitation">
+        <h2>SIAMO FELICI DI INVITARTI</h2>
+        <h1>Valeria & Alessandro</h1>
+        <p>Sabato 2 Maggio 2026<br>Ore 15:00</p>
+
+        <a class="button" href="https://www.google.com/maps/place/Parrocchia+Sacro+Cuore+di+Ges%C3%B9/@45.4397759,8.6104699,17z/data=!3m1!4b1!4m6!3m5!1s0x47865a1b9905d203:0x34594e0af7ea4a72!8m2!3d45.4397722!4d8.6130448!16s%2Fg%2F1thx7gqc?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+            📍 Mappa Chiesa
+        </a>
+
+        <a class="button" href="https://www.google.com/maps/place/La+Sesia+Hotel+Srl/@45.5314868,8.4052075,17z/data=!3m1!4b1!4m6!3m5!1s0x478640db82ad7bd5:0x155ca3992d42c30c!8m2!3d45.5314831!4d8.4077824!16s%2Fg%2F1tdd8qby?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+            🍽️ Mappa Ristorante
+        </a>
+
+        <p>Parteciperai?</p>
+
+        <a class="button" href="https://forms.gle/wXWT8VFeSqMLs6kbA" target="_blank">
+            ✅ Conferma Presenza
+        </a>
+    </div>
+</div>
+
+<script>
+document.getElementById("openBtn").onclick = function() {
+    document.getElementById("closed").style.display = "none";
+    document.getElementById("invitation").style.display = "block";
+}
+</script>
+
+</body>
+</html>
