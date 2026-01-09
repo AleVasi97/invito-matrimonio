@@ -43,12 +43,8 @@ body {
 .envelope-left { left: 0; border-right: 1px solid #ddd; }
 .envelope-right { right: 0; border-left: 1px solid #ddd; }
 
-.container.open .envelope-left {
-    transform: translateX(-100%);
-}
-.container.open .envelope-right {
-    transform: translateX(100%);
-}
+.container.open .envelope-left { transform: translateX(-100%); }
+.container.open .envelope-right { transform: translateX(100%); }
 
 /* SIGILLO */
 .seal {
@@ -93,7 +89,6 @@ body {
     transition: opacity 1s ease 1s;
 }
 
-/* OVERLAY BIANCO */
 .invite::before {
     content: "";
     position: absolute;
@@ -101,16 +96,13 @@ body {
     background: rgba(255,255,255,0.55);
 }
 
-/* CONTENUTO */
 .invite-content {
     position: relative;
-    padding: 40px 25px;
+    padding: 40px 25px 60px; /* spazio extra sotto */
     text-align: center;
 }
 
-.container.open .invite {
-    opacity: 1;
-}
+.container.open .invite { opacity: 1; }
 
 .subtitle {
     font-size: 13px;
@@ -129,11 +121,43 @@ body {
     font-size: 18px;
 }
 
-.buttons a {
+/* LOCATION ROW CON DISTANZA UNIFORME */
+.location-row {
+    display: flex;
+    justify-content: space-between; /* spazio uniforme tra immagini e bordi */
+    align-items: flex-end; /* allinea le immagini dal basso */
+    margin: 20px 0;
+    padding: 0 40px; /* piccolo padding sui lati */
+}
+
+/* IMMAGINE GRANDE */
+.location-large img {
+    width: 90px;
+    height: auto;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.location-large img:hover { transform: scale(1.05); }
+
+/* IMMAGINE PICCOLA */
+.location-small img {
+    width: 100px;
+    height: auto;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.location-small img:hover { transform: scale(1.05); }
+
+/* PULSANTE RSVP */
+.rsvp-button {
     display: block;
-    margin: 14px auto;
-    padding: 13px;
+    margin: 25px auto 0;
     width: 80%;
+    padding: 13px;
     background: #c9a86a;
     color: white;
     text-decoration: none;
@@ -144,39 +168,38 @@ body {
 </head>
 
 <body>
-
 <div class="container" id="container">
-
     <div class="envelope-left"></div>
     <div class="envelope-right"></div>
 
     <div class="seal" onclick="openInvite()">
-		<img src="timbro.png" alt="Sigillo">
-	</div>
-
+        <img src="timbro.png" alt="Sigillo">
+    </div>
 
     <div class="invite">
         <div class="invite-content">
             <div class="subtitle">SIAMO FELICI DI INVITARTI AL NOSTRO MATRIMONIO</div>
-
-            <div class="names">
-                Valeria <br>&<br> Alessandro
-            </div>
-
+            <div class="names">Valeria <br>&<br> Alessandro</div>
             <div class="date">
                 Sabato<br>
                 <strong>2 Maggio 2026</strong><br>
                 Ore 15:00
             </div>
 
-            <div class="buttons">
-                <a href="https://maps.google.com/?q=CHIESA" target="_blank">📍 Mappa Chiesa</a>
-                <a href="https://maps.google.com/?q=RISTORANTE" target="_blank">🍽️ Mappa Ristorante</a>
-                <a href="https://forms.gle/TUOFORM" target="_blank">💍 Conferma Presenza</a>
+            <div class="location-row">
+                <a href="https://www.google.com/maps/place/Parrocchia+Sacro+Cuore+di+Ges%C3%B9/@45.4397759,8.6104699,17z/data=!3m1!4b1!4m6!3m5!1s0x47865a1b9905d203:0x34594e0af7ea4a72!8m2!3d45.4397722!4d8.6130448!16s%2Fg%2F1thx7gqc?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="location-large">
+                    <img src="chiesa.png" alt="Chiesa">
+                </a>
+                <a href="https://www.google.com/maps/place/La+Sesia+Hotel+Srl/@45.5314868,8.4052075,17z/data=!3m1!4b1!4m6!3m5!1s0x478640db82ad7bd5:0x155ca3992d42c30c!8m2!3d45.5314831!4d8.4077824!16s%2Fg%2F1tdd8qby?entry=ttu&g_ep=EgoyMDI2MDEwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="location-small">
+                    <img src="ristorante.png" alt="Ristorante">
+                </a>
             </div>
+
+            <a href="https://forms.gle/wXWT8VFeSqMLs6kbA" target="_blank" class="rsvp-button">
+                💍 Conferma Presenza
+            </a>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -184,6 +207,5 @@ function openInvite() {
     document.getElementById("container").classList.add("open");
 }
 </script>
-
 </body>
 </html>
