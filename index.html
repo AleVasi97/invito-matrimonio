@@ -69,6 +69,28 @@ body {
     pointer-events: none;
 }
 
+.tap-text {
+    margin-top: 14px;
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 26px;
+    color: #8c7a5a;
+    letter-spacing: 1px;
+    animation: fadePulse 2.5s infinite;
+}
+
+/* Piccola animazione elegante */
+@keyframes fadePulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
+}
+
+/* Quando si apre l'invito, sparisce insieme al sigillo */
+.container.open .tap-text {
+    opacity: 0;
+}
+
 /* INVITO */
 .invite {
     position: absolute;
@@ -165,8 +187,9 @@ body {
     <div class="envelope-right"></div>
 
     <div class="seal" onclick="openInvite()">
-        <img src="timbro.png" alt="Sigillo">
-    </div>
+		<img src="timbro.png" alt="Sigillo">
+		<div class="tap-text">Tocca per aprire</div>
+	</div>
 
     <div class="invite">
         <div class="invite-content">
